@@ -58,7 +58,7 @@ Meme Voting Arena allows users to:
 
 4. Create a `.env` file in the project root with this content:
     ```env
-    PORT=3000
+    PORT=8080
     CLOUDINARY_CLOUD_NAME=your_cloud_name
     CLOUDINARY_KEY=your_cloudinary_key
     CLOUDINARY_SECRET=your_cloudinary_secret
