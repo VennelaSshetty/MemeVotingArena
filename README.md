@@ -76,6 +76,10 @@ Meme Voting Arena allows users to:
     ```
 
 ---
+## 🌐 Live Demo
+
+Check out the deployed application here:  
+Meme Voting Arena Live  👉  https://meme-voting-arena.onrender.com/listings
 
 ## ⚡ Dependencies
 
