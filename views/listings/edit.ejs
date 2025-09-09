@@ -1,0 +1,45 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Edit Meme</h1>
+
+    <form action="/listings/<%= listing._id %>?_method=PUT" method="POST" class="mx-auto needs-validation" style="max-width: 600px;" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="title" class="form-label">Meme Title</label>
+            <input type="text" class="form-control" id="title" name="title" value="<%= listing.title %>" required>
+            <div class="invalid-feedback">
+                Please provide a title for your meme.
+            </div>
+        </div>
+
+        <div class="mb-3">
+            Original Listing Image<br>
+            <img src="<%= originalUrl %>" style="height:300px ; width:300px;">
+        </div>
+
+        <div class="mb-3">
+            <label for="imageUrl" class="form-label">Upload new image</label>
+            <input type="file" class="form-control" id="imageUrl" name="image" value="<%= listing.image.url %>">
+        </div>
+
+        <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <select class="form-select" id="category" name="category" required>
+                <option value="Study" <%= listing.category === "Study" ? "selected" : "" %>>Study</option>
+                <option value="Family" <%= listing.category === "Family" ? "selected" : "" %>>Family</option>
+                <option value="Work" <%= listing.category === "Work" ? "selected" : "" %>>Work</option>
+                <option value="Love" <%= listing.category === "Love" ? "selected" : "" %>>Love</option>
+                <option value="Pets" <%= listing.category === "Pets" ? "selected" : "" %>>Pets</option>
+                <option value="Internet" <%= listing.category === "Internet" ? "selected" : "" %>>Internet</option>
+                <option value="Gaming" <%= listing.category === "Gaming" ? "selected" : "" %>>Gaming</option>
+                <option value="Food" <%= listing.category === "Food" ? "selected" : "" %>>Food</option>
+                <option value="Life" <%= listing.category === "Life" ? "selected" : "" %>>Life</option>
+                <option value="Movies" <%= listing.category === "Movies" ? "selected" : "" %>>Movies</option>
+                <option value="School" <%= listing.category === "School" ? "selected" : "" %>>School</option>
+                <option value="Tech" <%= listing.category === "Tech" ? "selected" : "" %>>Tech</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Update Meme</button>
+    </form>
+</div>

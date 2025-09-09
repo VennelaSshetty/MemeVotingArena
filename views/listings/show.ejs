@@ -1,0 +1,124 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+  .meme-img-large {
+      max-width: 600px;
+      width: 420px;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin: 0 auto;
+  }
+
+  .vote-buttons {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+  }
+
+  .vote-count {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-top: 5px;
+  }
+
+  .favorite-btn {
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+  }
+
+  .position-relative-wrapper {
+      position: relative;
+      display: inline-block;
+      margin-top: 20px;
+  }
+  @media (max-width: 768px) {
+    .meme-img-large {
+        width: 95%;
+        height: auto;
+    }
+
+    h1 {
+        font-size: 1.3rem;
+    }
+
+    .vote-count {
+        font-size: 1rem;
+    }
+
+    .vote-buttons form button {
+        width: 100%;
+    }
+
+    .container .btn {
+        width: 48%;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    .vote-count {
+        font-size: 0.95rem;
+    }
+
+    .vote-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .container .btn {
+        width:80%;
+    }
+}
+</style>
+
+<div class="container mt-5 text-center">
+    <h1><%= listing.title %></h1>
+
+    <div class="position-relative-wrapper">
+        <img src="<%= listing.image.url %>" alt="<%= listing.title %>" class="meme-img-large">
+
+        <% if(currUser){ %>
+        <form action="/listings/favorites/<%= listing._id %>/toggle" method="POST" class="position-absolute top-0 end-0 m-2">
+            <button type="submit" class="favorite-btn">
+                <% if (currUser && currUser.favorites.map(f => f.toString()).includes(listing._id.toString())) { %>
+                    <i class="fa-solid fa-heart text-danger"></i>
+                <% } else { %>
+                    <i class="fa-regular fa-heart text-white"></i>
+                <% } %>
+            </button>
+        </form>
+        <% } %>
+    </div>
+
+    <p class="card-text mt-3"> Uploaded by <b><%= listing.owner.username %></b></p>
+
+    <div class="vote-buttons">
+        <form action="/listings/<%= listing._id %>/upvote" method="POST" style="display:inline;">
+            <button type="submit" class="btn btn-success">Upvote 👍</button>
+        </form>
+        <span id="upvoteCount" class="vote-count"><%= listing.votes.filter(v => v.type === 'upvote').length %></span>
+
+        <form action="/listings/<%= listing._id %>/downvote" method="POST" style="display:inline;">
+            <button type="submit" class="btn btn-danger">Downvote 👎</button>
+        </form>
+        <span id="downvoteCount" class="vote-count"><%= listing.votes.filter(v => v.type === 'downvote').length %></span>
+    </div>
+
+    <% if(currUser && currUser._id.equals(listing.owner._id)) { %>    
+    <div class="mb-3 mt-4">
+        <a href="/listings/<%= listing._id %>/edit" class="btn btn-warning ms-3 me-4 mb-3 mt-3">Edit Meme</a>
+
+        <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST" style="display: inline;">
+            <button type="submit" class="btn btn-danger">Delete Meme</button>
+        </form>
+    </div>
+    <% } %>  
+</div>

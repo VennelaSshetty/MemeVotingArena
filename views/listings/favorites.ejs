@@ -1,0 +1,61 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+  .meme-img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  .card-title {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: bold;
+      color: var(--arena-green);
+  }
+
+  .position-relative-wrapper {
+      position: relative;
+  }
+
+  .favorite-btn {
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+  }
+</style>
+
+<div class="container my-4">
+  <h2 class="text-center mb-4" style="color: var(--arena-green);">Your Favorite Memes</h2>
+
+  <div class="row">
+    <% if (favorites.length === 0) { %>
+      <p class="text-center text-white">You have no favorites yet!</p>
+    <% } else { %>
+      <% favorites.forEach(listing => { %>
+        <div class="col-md-4 mb-4">
+          <div class="position-relative-wrapper">
+            <a href="/listings/<%= listing._id %>" class="text-decoration-none text-dark">
+              <img src="<%= listing.image.url %>" alt="<%= listing.title %>" class="meme-img">
+            </a>
+
+            <form action="/listings/favorites/<%= listing._id %>/toggle" method="POST" class="position-absolute top-0 end-0 m-2">
+              <button type="submit" class="favorite-btn">
+                  <i class="fa-solid fa-heart text-danger"></i> 
+              </button>
+            </form>
+
+            <h5 class="card-title"><%= listing.title %></h5>
+          </div>
+        </div>
+      <% }) %>
+    <% } %>
+  </div>
+
+  <div class="text-center mt-4">
+    <a href="/listings" class="btn btn-primary">Back to Home</a>
+  </div>
+</div>

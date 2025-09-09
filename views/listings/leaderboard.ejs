@@ -1,0 +1,82 @@
+
+<% layout("/layouts/boilerplate") %>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    h1 {
+        margin-top: 30px;
+        margin-bottom: 40px;
+        font-weight: 700;
+        color: #343a40;
+    }
+    .meme-card {
+        position: relative; 
+        transition: transform 0.3s, box-shadow 0.3s;
+        border-radius: 15px;
+    }
+    .meme-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    .meme-img {
+        border-radius: 15px 15px 0 0;
+        height: 200px;
+        object-fit: cover;
+    }
+    .card-body {
+        background-color: #fff;
+        border-radius: 0 0 15px 15px;
+    }
+    .top-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: gold;
+        color: #fff;
+        padding: 5px 10px;
+        font-weight: 700;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .net-votes {
+        font-size: 1.1rem;
+        font-weight: 900;
+        color: #080c10;
+    }
+</style>
+
+<div class="container text-center">
+    <h1>🏆 Top 5 Memes Leaderboard 🏆</h1>
+
+    <% for (let i = 0; i < top5.length; i += 3) { %>
+        <div class="row justify-content-center gx-4 gy-4 mb-4">
+            <% top5.slice(i, i + 3).forEach((listing, index) => { %>
+                <div class="col-md-4 col-lg-3 d-flex justify-content-center">
+                    <div class="card meme-card shadow-sm" style="width: 18rem;">
+                        <% if(i + index === 0) { %>
+                            <div class="top-badge">#1</div>
+                        <% } else if(i + index === 1) { %>
+                            <div class="top-badge" style="background-color: silver;">#2</div>
+                        <% } else if(i + index === 2) { %>
+                            <div class="top-badge" style="background-color: #cd7f32;">#3</div>
+                        <% } %>
+
+                       <img src="<%= listing.image && listing.image.url ? listing.image.url : '/images/default-meme.jpg' %>" 
+                       class="card-img-top meme-img" 
+                       alt="<%= listing.title %>">
+
+                        <div class="card-body">
+                            <h5 class="card-title"><%= listing.title %></h5>
+                            <h6 class="net-votes">Net Votes: <%= listing.netVotes %></h6>
+                            <a href="/listings/<%= listing._id %>" class="btn btn-primary btn-sm">View Meme</a>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    <% } %>
+</div>
+

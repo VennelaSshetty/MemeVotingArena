@@ -1,0 +1,38 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="catchy-lines">
+  😂 "Where Memes Battle for Greatness!" <br>
+  🤣 "Your Vote Decides the Ultimate Meme Champion!" <br>
+  🤯 "Scroll, Laugh & Crown the Funniest!"
+</div>
+
+<div class="categories">
+  <a href="/listings"><button class="category-btn">All</button></a>
+  <a href="/listings/category/Study"><button class="category-btn">📚 Study</button></a>
+  <a href="/listings/category/Family"><button class="category-btn">👨‍👩‍👧 Family</button></a>
+  <a href="/listings/category/Love"><button class="category-btn">💘 Love</button></a>
+  <a href="/listings/category/Pets"><button class="category-btn">🐶 Pets</button></a>
+  <a href="/listings/category/Internet"><button class="category-btn">🌐 Internet</button></a>
+  <a href="/listings/category/Gaming"><button class="category-btn">🎮 Gaming</button></a>
+  <a href="/listings/category/Food"><button class="category-btn">🍔 Food</button></a>
+  <a href="/listings/category/Life"><button class="category-btn">🌍 Life</button></a>
+  <a href="/listings/category/Movies"><button class="category-btn">🎬 Movies</button></a>
+  <a href="/listings/category/School"><button class="category-btn">🏫 School</button></a>
+  <a href="/listings/category/Tech"><button class="category-btn">💻 Tech</button></a>
+</div>
+
+
+<div class="row" id="memeContainer">
+  <% allListings.forEach(listing => { %>
+    <div class="col-md-4 mb-4 meme-card" data-category="<%= listing.category %>">
+      <a href="/listings/<%= listing._id %>" class="text-decoration-none text-dark">
+        <div class="card h-100 shadow-lg">
+          <img src="<%= listing.image.url %>" class="card-img-top meme-img" alt="<%= listing.title %>">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title meme-title"><%= listing.title %></h5>
+          </div>
+        </div>
+      </a>
+    </div>
+  <% }) %>
+</div>

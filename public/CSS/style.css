@@ -1,0 +1,166 @@
+:root {
+  --arena-green: #50C878;  
+  --arena-bg: #000000;     
+}
+body, html {
+  background-color: #000000 !important;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+    margin: 0;
+}
+.container {
+    flex: 1;
+   
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* ===== Navbar ===== */
+.navbar {
+  background: var(--arena-bg) !important;
+  border-bottom: 1px solid var(--arena-green);
+}
+.navbar-brand {
+  color: var(--arena-green) !important;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+.nav-link {
+  color: var(--arena-green) !important;
+  margin-right: 10px;
+}
+.nav-link:hover {
+  color: #fff !important;
+}
+
+/* Search Bar */
+.navbar .form-control {
+  background: #111;
+  border: 1px solid var(--arena-green);
+  color: var(--arena-green);
+}
+.navbar .form-control::placeholder {
+  color: #eee;
+  opacity: 1;
+}
+
+.btn-outline-light {
+  border-color: var(--arena-green);
+  color: var(--arena-green);
+}
+.btn-outline-light:hover {
+  background: var(--arena-green);
+  color: #000;
+}
+
+/* ===== Footer ===== */
+footer {
+  margin-top: auto;
+  background: var(--arena-bg);
+  color: var(--arena-green);
+  border-top: 1px solid var(--arena-green);
+  text-align: center;
+  padding: 15px;
+  font-size: 0.9rem;
+}
+
+/* ===== Catchy Lines ===== */
+.catchy-lines {
+  text-align: center;
+  margin: 50px 20px 30px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--arena-green);
+}
+
+/* ===== Categories ===== */
+.categories {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.categories button {
+  background: transparent;
+  border: 1px solid var(--arena-green);
+  color: var(--arena-green);
+  padding: 6px 14px;
+  margin: 4px;
+  border-radius: 16px;
+  font-weight: 500;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.categories button:hover,
+.categories button.active {
+  background: var(--arena-green);
+  color: #000;
+}
+
+/* ===== Meme Cards ===== */
+.meme-img {
+  height: 260px;
+  width: 100%;
+  object-fit: cover;
+}
+.card {
+  background: #fff;
+  color: #000;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+.meme-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+/* ===== Flash Messages ===== */
+.alert-success {
+  background: rgba(80, 200, 120, 0.1);
+  color: var(--arena-green);
+  border: 1px solid var(--arena-green);
+}
+.alert-danger {
+  background: rgba(255, 0, 0, 0.1);
+  color: #d9534f;
+  border: 1px solid #d9534f;
+}
+
+h1,p,span,h3,label{
+    color: #fff !important;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .catchy-lines { font-size: 1.1rem; }
+  .categories button { font-size: 0.8rem; padding: 4px 10px; }
+}
+
+@media (max-width: 992px) {
+  .catchy-lines { font-size: 1rem; }
+  .card { max-width: 80% }
+  .meme-img {height: 180px}
+  .meme-title {font-size: 0.95rem;}
+}
+
+@media (max-width: 768px) {
+  .categories button { font-size: 0.75rem; padding: 3px 8px; }
+  .catchy-lines { font-size: 0.95rem; margin: 30px 10px 15px; }
+  .card {max-width: 220px;}
+  .meme-img {height: 160px;}
+  .meme-title {font-size: 0.9rem}
+}
+
+@media (max-width: 576px) {
+  .categories button { font-size: 0.7rem; padding: 2px 6px; margin: 2px; }
+  .catchy-lines { font-size: 0.9rem; margin: 20px 5px 10px; }
+  .card {max-width: 90%;margin: 0 auto; /* full width on mobile */ }
+  .meme-img {height: 140px;}
+  .meme-title {font-size: 0.85rem;}
+}
+
